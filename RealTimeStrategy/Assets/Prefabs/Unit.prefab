@@ -140,6 +140,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
+  unitMovement: {fileID: 2072813129775864572}
   onSelected:
     m_PersistentCalls:
       m_Calls:
