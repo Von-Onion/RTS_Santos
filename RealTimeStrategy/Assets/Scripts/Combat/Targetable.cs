@@ -7,7 +7,7 @@ public class Targetable : NetworkBehaviour
 {
     [SerializeField] private Transform aimAtPoint = null;
 
-    public Transform GetAimPoint() {
+    public Transform GetAimAtPoint() {
         return aimAtPoint;
     }
 }
