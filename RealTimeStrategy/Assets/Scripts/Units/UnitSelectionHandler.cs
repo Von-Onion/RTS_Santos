@@ -20,7 +20,11 @@ public class UnitSelectionHandler : MonoBehaviour
 
     private void Start() {
         mainCamera = Camera.main;
-        
+        Unit.AuthorityOnUnitDespawned += AuthorityHandleUnitDespawned;        
+    }
+
+    private void OnDestroy() {
+        Unit.AuthorityOnUnitDespawned -= AuthorityHandleUnitDespawned;
     }
 
     private void Update() {
@@ -45,11 +49,9 @@ public class UnitSelectionHandler : MonoBehaviour
             foreach(Unit selectedUnit in SelectedUnits) {
                 selectedUnit.Deselect();
             }
+
+            SelectedUnits.Clear();
         }
-
-        
-
-        SelectedUnits.Clear();
 
         unitSelectionArea.gameObject.SetActive(true);
 
@@ -107,5 +109,10 @@ public class UnitSelectionHandler : MonoBehaviour
             }
         }
        
+    }
+
+
+    private void AuthorityHandleUnitDespawned(Unit unit) {
+        SelectedUnits.Remove(unit);
     }
 }
