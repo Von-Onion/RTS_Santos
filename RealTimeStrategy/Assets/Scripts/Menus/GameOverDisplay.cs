@@ -9,22 +9,30 @@ public class GameOverDisplay : MonoBehaviour
     [SerializeField] private GameObject gameOverDisplayParent = null;
     [SerializeField] private TMP_Text winnerNameText = null;
 
-    void Start()
+    private void Start()
     {
         GameOverHandler.ClientOnGameOver += ClientHandleGameOver;
     }
 
-    private void OnDestroy() {
+    private void OnDestroy()
+    {
         GameOverHandler.ClientOnGameOver -= ClientHandleGameOver;
     }
 
-    public void LeaveGame() {
-        if(NetworkServer.active && NetworkClient.isConnected) {
-            
+    public void LeaveGame()
+    {
+        if (NetworkServer.active && NetworkClient.isConnected)
+        {
+            NetworkManager.singleton.StopHost();
+        }
+        else
+        {
+            NetworkManager.singleton.StopClient();
         }
     }
 
-    private void ClientHandleGameOver(string winner) {
+    private void ClientHandleGameOver(string winner)
+    {
         winnerNameText.text = $"{winner} Has Won!";
 
         gameOverDisplayParent.SetActive(true);
