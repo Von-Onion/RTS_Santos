@@ -1,15 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using Mirror;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class UnitSpawner : NetworkBehaviour, IPointerClickHandler
 {
     [SerializeField] private Health health = null;
-    [SerializeField] private GameObject unitPrefab = null;
+    [SerializeField] private Unit unitPrefab = null;
     [SerializeField] private Transform unitSpawnPoint = null;
+    [SerializeField] private TMP_Text remainingUnitsText = null;
+    [SerializeField] private Image unitProgressImage = null;
+    [SerializeField] private int maxUnitQueue = 5;
+    [SerializeField] private float spawnMoveRange = 7f;
+    [SerializeField] private float unitSpawnDuration = 5f;
 
+    [SyncVar(hook = nameof(ClientHandleQueuedUnitsUpdated))]
+    private int queuedUnits;
+    [SyncVar]
+    private float unitTimer;
+
+    private RTSPlayer player;
+
+    
     
     #region Server
 
@@ -24,7 +39,7 @@ public class UnitSpawner : NetworkBehaviour, IPointerClickHandler
 
     [Server]
     private void ServerHandleDie() {
-        //NetworkServer.Destroy(gameObject);
+        NetworkServer.Destroy(gameObject);
     }
 
     [Command]
@@ -51,6 +66,9 @@ public class UnitSpawner : NetworkBehaviour, IPointerClickHandler
         CmdSpawnUnit();
     }
 
+    private void ClientHandleQueuedUnitsUpdated(int oldUnits, int newUnits) {
+        remainingUnitsText.text = newUnits.ToString();
+    }
 
     #endregion
 }
