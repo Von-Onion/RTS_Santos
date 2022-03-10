@@ -49,6 +49,22 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   aimAtPoint: {fileID: 8346230274152237239}
+--- !u!114 &3049554393243829559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8989080547533476468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00994e635e25f7c4bbf158004031620b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  colorRenderers:
+  - {fileID: 89422140196565334}
 --- !u!1 &7015567241181293142
 GameObject:
   m_ObjectHideFlags: 0
@@ -401,5 +417,10 @@ PrefabInstance:
 --- !u!4 &8346230274152237239 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2097189979126671230, guid: e91a880f5d73c1242a735f103ebc73ee, type: 3}
+  m_PrefabInstance: {fileID: 7983038371678007241}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &89422140196565334 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 8067288251197988511, guid: e91a880f5d73c1242a735f103ebc73ee, type: 3}
   m_PrefabInstance: {fileID: 7983038371678007241}
   m_PrefabAsset: {fileID: 0}
